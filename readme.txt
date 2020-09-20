@@ -4,7 +4,10 @@ game holds a score list of the players.
 
 
 to do:
-    - game
-    - save to score list
     - sorting score list
     - showing the score list
+
+done:
+    - game
+    - save to score list
+    - show the score list entry (unsorted or anything alike)

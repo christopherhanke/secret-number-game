@@ -1,9 +1,13 @@
 import random
+import json
+
+from datetime import datetime
 
 # initializing
 secret = random.randint(1, 100)
 attempts = 0
 guess = -1
+score = []
 score_avaible = True
 
 # welcome on screen
@@ -11,12 +15,22 @@ print("\n\nHello and welcome to the secret number game.")
 
 # try to open the score or going first player
 try:
-    with open("score.csv", "r") as score_data:
-        score = score_data.read()
-        print(f"Till now the best player needed {score} guess attempts.")
+    with open("score.txt", "r") as score_file:
+        score = json.loads(score_file.read())
+        
 except FileNotFoundError:
     print("Your the first player and will start a new score table.")
-    score_avaible = False
+    with open("score.txt", "w+") as score_file:
+        score_file.write("[]")
+        score_avaible = False
+
+if score_avaible:
+    print("The users before you, left this scores.")
+    for data in score:
+        string_data = str(data.get("attempts")) + " Attempts at " + str(data.get("date", ""))
+        print(string_data)
+        #TODO - fix the string - data.get()
+        print(f"{data.get("attempts")} Attempts at {2}.")
 
 # loop the guesses till secret number is found
 while guess != secret:
@@ -46,10 +60,9 @@ while guess != secret:
 print("\n\nHooray, you found it!")
 print(f"The secret number is {secret} and you guessed {attempts} times.")
 
+new_score = {"attempts": attempts, "date": str(datetime.now())}
+score.append(new_score)
+
 # writing to the score data
-if score_avaible:
-    with open("score.csv", "a") as score_data:
-        score_data.write(f",{str(attempts)}")
-else:
-    with open("score.csv", "w") as score_data:
-        score_data.write(f",{str(attempts)}")
+with open("score.txt", "w") as score_file:
+    score_file.write(json.dumps(score))

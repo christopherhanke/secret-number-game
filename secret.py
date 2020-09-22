@@ -27,10 +27,7 @@ except FileNotFoundError:
 if score_avaible:
     print("The users before you, left this scores.")
     for data in score:
-        string_data = str(data.get("attempts")) + " Attempts at " + str(data.get("date", ""))
-        print(string_data)
-        #TODO - fix the string - data.get()
-        print(f"{data.get("attempts")} Attempts at {2}.")
+        print(f"{data.get('attempts')} Attempts at {data.get('date')}.")
 
 # loop the guesses till secret number is found
 while guess != secret:

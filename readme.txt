@@ -2,9 +2,6 @@ Secret Number Game
 Shell game to guess a number between 1 and 100.
 game holds a score list of the players.
 
-#TODO
-    - bug in line 33 for displaying the string with the data
-
 
 to do:
     - sorting score list

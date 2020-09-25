@@ -1,2 +1,4 @@
 .vscode/
 score.txt
+score.json
+__pycache__/

@@ -5,6 +5,15 @@ from datetime import datetime
 from operator import itemgetter
 
 
+class Result:
+    
+    def __init__(self, score, player_name, date):
+        self.score = score
+        self.player_name = player_name
+        self.date = date
+
+
+
 def play_game(level="easy"):
     print(f"...initializing...\n...level: {level}... \n...Starting game...\n")
     name = input("Please login to the game with your name: ")
@@ -37,13 +46,24 @@ def play_game(level="easy"):
     print("\n\nHooray, you found it!")
     print(f"The secret number is {secret_number} and you guessed {attempts} times.\n\n")
 
-    new_score = {"attempts": attempts, "user": name, "level": level, "date": str(datetime), "secret": secret_number, "guesses": guesses}
+    new_score = {
+        "attempts": attempts,
+        "user": name,
+        "level": level,
+        "date": str(datetime.now()),
+        "secret": secret_number,
+        "guesses": guesses
+    }
     score = get_score()
     score.append(new_score)
 
     with open("score.json", "w") as score_file:
         score_file.write(json.dumps(score))
     
+    new_result = Result(score= attempts, player_name= name, date= str(datetime.now()))
+    
+    with open("results.txt", "w") as result_file:
+        result_file.write(json.dumps(new_result.__dict__))
         
 def get_score():
     try:

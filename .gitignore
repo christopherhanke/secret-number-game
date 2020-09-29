@@ -1,4 +1,6 @@
+__pycache__/
 .vscode/
+results.txt
 score.txt
 score.json
-__pycache__/
+

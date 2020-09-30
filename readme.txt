@@ -10,3 +10,5 @@ done:
     - showing the score list
     - defining modules/functions and main()-method
     - adding "hard" mode... more like clueless guessing ;)
+    - reworked the game with a class
+    - added saving over class instance

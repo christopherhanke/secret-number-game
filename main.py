@@ -1,5 +1,4 @@
-from game_functions import play_game
-from game_functions import show_topscore
+from game_functions import secret_game
 
 
 def main():
@@ -10,15 +9,16 @@ def main():
         selection = selection.lower()
 
         if selection == "p":
+            new_game = secret_game()
             print("Choose your gaming level. [H]ard or [E]asy?")
             user_level = input("Your choice? ").lower()
             if user_level == "h":
-                play_game("hard")
+                new_game.play_game("hard")
             else:
-                play_game()
+                new_game.play_game()
 
         elif selection == "s":
-            show_topscore()
+            secret_game.show_topscore()
 
         elif selection == "q":
             print("\nGoodbye.\n\n")
